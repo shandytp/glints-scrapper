@@ -32,8 +32,12 @@ def query_jobs(jobs, limit = 60):
 
     result = resp.json()
 
-    final_res = json.dumps(result, indent=2)
+    return result
 
-    return final_res
+json_data = query_jobs("data engineer", 60)
 
-print(query_jobs("data engineer", 30))
+# save into json file
+with open('data_engineer.json', 'w', encoding='utf-8') as f:
+    json.dump(json_data, f, indent=4)
+
+
