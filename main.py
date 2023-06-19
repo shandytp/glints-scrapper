@@ -47,24 +47,29 @@ def save_json_data(json_data, filename):
 
 if __name__ == "__main__":
     
-    # parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser()
 
-    # parser.add_argument("--jobs",
-    #                     type=query_jobs,
-    #                     help="Insert jobs name",
-    #                     required=True)
+    parser.add_argument("--jobs",
+                        type=str,
+                        help="Insert jobs name",
+                        required=True)
+    
+    parser.add_argument("--filename",
+                        type=str,
+                        help="Insert json filename to save file",
+                        required=True)
 
-    # args = parser.parse_args()
+    args = parser.parse_args()
 
     print("===== START SCRAPING DATA =====")
 
     # 1. Input jobs name and limit (optional)
-    json_data = query_jobs("data analyst",
+    json_data = query_jobs(args.jobs,
                            limit = 100)
 
     # 2. Save data into json file
     save_json_data(json_data = json_data,
-                   filename = "data_analyst.json")
+                   filename = args.filename)
     
     print("===== END SCRAPING DATA =====")
 
